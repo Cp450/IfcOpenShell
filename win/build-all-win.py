@@ -22,7 +22,7 @@ def is_arm64() -> bool:
 
 assert Path.cwd() == Path(__file__).parent, "Run this script from the 'win' directory."
 
-PYTHON_VERSIONS = ["3.10.3", "3.11.8", "3.12.1", "3.13.0", "3.14.0"]
+PYTHON_VERSIONS = ["3.12.1"]  # BIM Devis: only the Python version it ships
 REPO_PATH = Path(__file__).parent.parent
 REPO_WIN = REPO_PATH / "win"
 VERSION = (REPO_PATH / "VERSION").read_text().strip()
@@ -74,6 +74,7 @@ def build() -> None:
                 "vs2022-ARM64" if is_arm64() else "vs2022-x64",
                 "-DENABLE_BUILD_OPTIMIZATIONS=ON",
                 "-DGLTF_SUPPORT=ON",
+                "-DWITH_CGAL=OFF",  # BIM Devis: no GPL CGAL packages in the binary
             ]
         )
         restore_env(*OLD_ADD_COMMIT_SHA)
