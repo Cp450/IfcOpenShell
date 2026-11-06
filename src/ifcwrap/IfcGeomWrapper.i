@@ -1156,6 +1156,10 @@ ifcopenshell::geometry::taxonomy::item::ptr try_upcast(PyObject* obj0, swig_type
 
 #endif
 
+// BIM Devis: OpaqueCoordinate is used outside CGAL too; instantiate it in every build (WITH_CGAL=OFF)
+%template(OpaqueCoordinate_3) IfcGeom::OpaqueCoordinate<3>;
+%template(OpaqueCoordinate_4) IfcGeom::OpaqueCoordinate<4>;
+
 #ifdef IFOPSH_WITH_CGAL
 
 %ignore hlr_writer;
@@ -1176,9 +1180,6 @@ ifcopenshell::geometry::taxonomy::item::ptr try_upcast(PyObject* obj0, swig_type
 %template(svg_groups_of_polygons) std::vector<std::vector<svgfill::polygon_2>>;
 %template(svg_loop) std::vector<std::array<double, 2>>;
 %template(svg_loops) std::vector<std::vector<std::array<double, 2>>>;
-
-%template(OpaqueCoordinate_3) IfcGeom::OpaqueCoordinate<3>;
-%template(OpaqueCoordinate_4) IfcGeom::OpaqueCoordinate<4>;
 
 %newobject create_epeck;
 
